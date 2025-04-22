@@ -4,15 +4,34 @@
   <meta charset="UTF-8">
   <title>Treasure Hunt Adventure</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    #game, #replay-btn {
+      display: none;
+    }
+  </style>
 </head>
 <body>
+  <h1>🏴‍☠️ Treasure Hunt Adventure</h1>
+
+  <div id="intro">
+    <p>Welcome adventurer! Explore different locations and find the hidden <strong>bag of gold</strong> 🪙.<br>
+    Beware: danger lurks in some places... 💀</p>
+    <button id="start-game">Start Game</button>
+  </div>
+
   <div id="game">
-    <h1>🏴‍☠️ Treasure Hunt Adventure</h1>
     <div id="room-description"></div>
     <div id="room-objects"></div>
     <div id="actions"></div>
     <div id="message"></div>
+    <button id="replay-btn">🔁 Play Again</button>
   </div>
+
+  <!-- Sound Effects -->
+  <audio id="bg-music" src="bg-music.mp3" loop></audio>
+  <audio id="win-sound" src="win-sound.mp3"></audio>
+  <audio id="lose-sound" src="lose-sound.mp3"></audio>
+
   <script src="game.js"></script>
 </body>
 </html>

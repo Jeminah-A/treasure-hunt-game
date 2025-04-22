@@ -29,4 +29,12 @@ body {
   button:hover {
     background-color: #d99e00;
   }
+
+  #intro{
+    text-align: center;
+  }
+
+  h1{
+    text-align: center;
+  }
   
