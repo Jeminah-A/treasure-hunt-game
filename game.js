@@ -1,3 +1,36 @@
+const startButton = document.getElementById("start-game");
+const replayButton = document.getElementById("replay-btn");
+const introSection = document.getElementById("intro");
+const gameSection = document.getElementById("game");
+
+startButton.addEventListener("click", () => {
+  introSection.style.display = "none";
+  gameSection.style.display = "block";
+  bgMusic.volume = 0.3;
+  bgMusic.play();
+  displayRoomInfo();
+});
+
+
+const bgMusic = document.getElementById("bg-music");
+const winSound = document.getElementById("win-sound");
+const loseSound = document.getElementById("lose-sound");
+
+// Start background music when the page loads
+document.getElementById("start-game").addEventListener("click", () => {
+  bgMusic.volume = 0.3;
+  bgMusic.play().catch(() => {
+    console.log("Music blocked until interaction.");
+  });
+
+  // Hide the start button
+  document.getElementById("start-game").style.display = "none";
+
+  // Start the game
+  displayRoomInfo();
+});
+
+
 class Room {
   constructor(name, description, objects = [], exits = {}) {
     this.name = name;
@@ -62,31 +95,47 @@ function displayRoomInfo() {
   actions.innerHTML = "";
   message.textContent = "";
 
+  if (currentRoom === treasureRoom && !hasWon) {
+    hasWon = true;
+    message.textContent = "🎉 You found the treasure and won the game!";
+    actions.innerHTML = "";
+    bgMusic.pause();
+    winSound.play();
+    replayButton.style.display = "inline-block";
+    return;
+  }
+  
+  if (currentRoom === trapRoom && !hasLost) {
+    hasLost = true;
+    message.textContent = "💀 You fell into a trap. Game over.";
+    actions.innerHTML = "";
+    bgMusic.pause();
+    loseSound.play();
+    replayButton.style.display = "inline-block";
+    return;
+  }
+  
+
   for (const direction in currentRoom.exits) {
     const btn = document.createElement("button");
     btn.textContent = `Go ${direction}`;
     btn.onclick = () => move(direction);
     actions.appendChild(btn);
   }
-
-  if (currentRoom === treasureRoom) {
-    hasWon = true;
-    message.textContent = "🎉 You found the treasure and won the game!";
-    actions.innerHTML = "";
-  } else if (currentRoom === trapRoom) {
-    hasLost = true;
-    message.textContent = "💀 You fell into a trap. Game over.";
-    actions.innerHTML = "";
+  function move(direction) {
+    const nextRoom = currentRoom.exits[direction];
+    if (nextRoom) {
+      currentRoom = nextRoom;
+      displayRoomInfo();
+    }
   }
-}
-
-function move(direction) {
-  const nextRoom = currentRoom.exits[direction];
-  if (nextRoom) {
-    currentRoom = nextRoom;
-    displayRoomInfo();
-  }
+  
 }
 
 // Start the game
 displayRoomInfo();
+
+replayButton.addEventListener("click", () => {
+  location.reload(); // Simple page refresh for reset
+});
+
