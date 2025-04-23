@@ -4,6 +4,10 @@ body {
     color: #121212;
     padding: 20px;
   }
+  .text_color{
+    font-weight: bold;
+    color:rgb(237, 25, 10);
+  }
   
   #game {
     max-width: 600px;
@@ -38,4 +42,18 @@ body {
   h1{
     text-align: center;
   }
+  
+  #replay-btn {
+    display: none;
+    margin: 20px auto; /* Center horizontally */
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+ 
   

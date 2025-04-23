@@ -16,6 +16,16 @@ const bgMusic = document.getElementById("bg-music");
 const winSound = document.getElementById("win-sound");
 const loseSound = document.getElementById("lose-sound");
 
+const directionInput = document.getElementById("direction-input");
+directionInput.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    const typedDirection = directionInput.value.trim().toLowerCase();
+    directionInput.value = ""; // Clear input box
+    move(typedDirection);
+  }
+});
+  
+
 // Start background music when the page loads
 document.getElementById("start-game").addEventListener("click", () => {
   bgMusic.volume = 0.3;
@@ -92,7 +102,7 @@ function displayRoomInfo() {
     ? `You see: ${currentRoom.objects.join(", ")}`
     : "";
 
-  actions.innerHTML = "";
+  //actions.innerHTML = "";
   message.textContent = "";
 
   if (currentRoom === treasureRoom && !hasWon) {
@@ -101,7 +111,7 @@ function displayRoomInfo() {
     actions.innerHTML = "";
     bgMusic.pause();
     winSound.play();
-    replayButton.style.display = "inline-block";
+    replayButton.style.display = "block";
     return;
   }
   
@@ -111,26 +121,24 @@ function displayRoomInfo() {
     actions.innerHTML = "";
     bgMusic.pause();
     loseSound.play();
-    replayButton.style.display = "inline-block";
+    replayButton.style.display = "block";
     return;
   }
   
 
-  for (const direction in currentRoom.exits) {
-    const btn = document.createElement("button");
-    btn.textContent = `Go ${direction}`;
-    btn.onclick = () => move(direction);
-    actions.appendChild(btn);
-  }
-  function move(direction) {
-    const nextRoom = currentRoom.exits[direction];
-    if (nextRoom) {
-      currentRoom = nextRoom;
-      displayRoomInfo();
-    }
-  }
-  
+
 }
+function move(direction) {
+  const nextRoom = currentRoom.exits[direction];
+  if (nextRoom) {
+    currentRoom = nextRoom;
+    displayRoomInfo();
+  } else {
+    const message = document.getElementById("message");
+    message.textContent = "❌ You can't go that way. Try another direction.";
+  }
+}
+
 
 // Start the game
 displayRoomInfo();

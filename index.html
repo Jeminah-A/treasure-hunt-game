@@ -5,7 +5,7 @@
   <title>Treasure Hunt Adventure</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    #game, #replay-btn {
+    #game {
       display: none;
     }
   </style>
@@ -22,10 +22,14 @@
   <div id="game">
     <div id="room-description"></div>
     <div id="room-objects"></div>
-    <div id="actions"></div>
-    <div id="message"></div>
-    <button id="replay-btn">🔁 Play Again</button>
+    <div id="actions">
+      <p class="text_color">Type a direction (e.g. "north", "east") and press Enter:</p>
+      <input type="text" id="direction-input" placeholder="north, south, east or west" />
+    </div>
+    
+    <div id="message"></div> 
   </div>
+  <button id="replay-btn">🔁 Play Again</button>
 
   <!-- Sound Effects -->
   <audio id="bg-music" src="bg-music.mp3" loop></audio>
