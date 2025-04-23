@@ -66,13 +66,13 @@ const forest = new Room(
 
 const cave = new Room(
   "Cave",
-  "You entered a cave. It's cold and damp. Something glimmers in the corner...",
+  "You entered a cave. It's cold and damp. Something glimmers in the corner...There's a path to the south and east" ,
   []
 );
 
 const river = new Room(
   "River",
-  "You are by a fast-flowing river. A bridge leads west.",
+  "You are by a fast-flowing river. There's a path to the west and north.",
   []
 );
 
