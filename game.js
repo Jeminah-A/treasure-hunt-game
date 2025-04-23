@@ -67,7 +67,7 @@ const forest = new Room(
 const cave = new Room(
   "Cave",
   "You entered a cave. It's cold and damp. Something glimmers in the corner...",
-  ["shiny rock"]
+  []
 );
 
 const river = new Room(
@@ -78,13 +78,13 @@ const river = new Room(
 
 const treasureRoom = new Room(
   "Treasure Room",
-  "You've found a secret chamber. In front of you is a BAG OF GOLD! 🎉",
-  ["bag of gold"]
+  "You've found a secret chamber. In front of you is a room filled with GOLD! 🎉",
+  []
 );
 
 const trapRoom = new Room(
   "Trap Room",
-  "You stepped into a trap! You fall into a pit of spikes. Game over.",
+  "You stepped into a trap! You've been trapped in this room. Game over.",
   []
 );
 
