@@ -55,5 +55,14 @@ body {
     cursor: pointer;
   }
   
+  #room-image {
+    width: 100%;
+    height: 400px;
+    max-width: 600px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: block;
+  }
+  
  
   
