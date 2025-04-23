@@ -25,6 +25,13 @@ directionInput.addEventListener("keydown", function (event) {
   }
 });
   
+const roomImages = {
+  "Forest": "images/forest.jpg",
+  "Cave": "images/cave.jpg",
+  "River": "images/river.jpg",
+  "Treasure Room": "images/treasure.jpg",
+  "Trap Room": "images/trap.jpg"
+};
 
 // Start background music when the page loads
 document.getElementById("start-game").addEventListener("click", () => {
@@ -36,10 +43,10 @@ document.getElementById("start-game").addEventListener("click", () => {
   // Hide the start button
   document.getElementById("start-game").style.display = "none";
 
+ 
   // Start the game
   displayRoomInfo();
 });
-
 
 class Room {
   constructor(name, description, objects = [], exits = {}) {
@@ -101,6 +108,10 @@ function displayRoomInfo() {
   roomObjects.textContent = currentRoom.objects.length > 0
     ? `You see: ${currentRoom.objects.join(", ")}`
     : "";
+
+    const roomImage = document.getElementById("room-image");
+    roomImage.src = roomImages[currentRoom.name] || "";
+
 
   //actions.innerHTML = "";
   message.textContent = "";
